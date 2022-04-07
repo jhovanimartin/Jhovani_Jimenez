@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace ConsoleApplication1
+    //JHOVANI MARTIN JIMENEZ LOPEZ
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            //Pedimos nombre del Archivo
+            Console.WriteLine("Ingrese Nombre del Archivo");
+            String Arc = Console.ReadLine();
+
+            //Abrimos o Creamos un Archivo si no existe.
+            Stream Archivo = new FileStream("./" + Arc + ".txt", FileMode.OpenOrCreate);
+
+            //Escribimos en nuestro Archivo mediante StramWrite
+            StreamWriter Escribir = new StreamWriter(Archivo);
+
+            Console.WriteLine("Ingrese texto para escribir en: " + Arc + ".txt");
+            String Texto = Console.ReadLine();
+
+            Escribir.WriteLine(Texto);
+
+            //Cerramos
+            Escribir.Close();
+            Archivo.Close();
+
+            //Abrimos o Creamos un Archivo si no existe.
+            Stream Archivo2 = new FileStream("./" + Arc + ".txt", FileMode.OpenOrCreate);
+            Console.WriteLine("\nLectura:\n");
+
+            //Leemos nuestro archivo mediante StreamReader
+            StreamReader Leer = new StreamReader(Archivo2);
+            Console.WriteLine(Leer.ReadToEnd());
+
+            //Cerramos
+            Leer.Close();
+            Archivo2.Close();
+
+        }
+    }
+}
